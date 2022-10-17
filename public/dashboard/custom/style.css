@@ -1,0 +1,22 @@
+@media (max-width: 576px) {
+    .login-box,
+    .register-box {
+        justify-content: center;
+        margin-left: 5%;
+    }
+}
+
+.login-page,
+.register-page{
+    padding-top: 10%;
+}
+
+.AdminLTELogo{
+    width: 100px;
+}
+
+.index_image{
+    width:100px;
+    height:80px;
+}
+
