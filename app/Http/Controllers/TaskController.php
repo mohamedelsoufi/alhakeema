@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Status;
+use App\Events\UpdateTaskStatus;
 use App\Http\Requests\TaskRequest;
 use App\Interfaces\TaskInterface;
 use App\Interfaces\UserInterface;
@@ -39,6 +41,8 @@ class TaskController extends Controller
     {
         try {
             $users = $this->user->getAll();
+            event(new Status('Hi Ya waal'));
+            event(new UpdateTaskStatus('in create'));
             return view('tasks.create',compact('users'));
         }catch (\Exception $e){
             return redirect()->back()->with(['error'=>'Something went wrong']);

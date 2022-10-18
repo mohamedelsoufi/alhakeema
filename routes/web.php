@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UpdateTaskStatus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,6 @@ Route::get('login', 'AuthController@login')->name('login');
 //proceed login
 Route::post('authenticate', 'AuthController@authenticate')->name('authenticate');
 
-
 Route::middleware(['auth:web'])->group(function () {
     //home page route
     Route::get('/', 'HomeController@index')->name('home');
@@ -33,4 +33,5 @@ Route::middleware(['auth:web'])->group(function () {
     //task routes
     Route::resource('tasks','TaskController');
     Route::get('my-tasks','TaskController@myTasks')->name('tasks.myTasks');
+
 });

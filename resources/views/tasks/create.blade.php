@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create Task'))
+@section('title', 'Create Task')
 @section('content')
 
     <div class="content-wrapper">

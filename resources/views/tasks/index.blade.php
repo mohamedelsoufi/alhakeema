@@ -52,7 +52,7 @@
                                             <td>{{$task->title}}</td>
                                             <td>{{Str::limit($task->description,20)}}</td>
                                             <td>{{$task->user->name}}</td>
-                                            <td
+                                            <td id="status"
                                                 @if($task->status == 'CANCELLED')
                                                 class="bg-danger"
                                                 @elseif($task->status == 'INPROGRESS')
@@ -105,4 +105,18 @@
 
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+       
+
+        Echo.channel('realTimePreview')
+            .listen('UpdateTaskStatus', (e) => {
+                console.log('Received test event');
+                console.log(e.message);
+                document.getElementById('status').innerText = e.message;
+            });
+
+    </script>
 @endsection

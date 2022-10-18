@@ -4,6 +4,8 @@
 namespace App\Repositories;
 
 
+use App\Events\RealTimeTaskEvent;
+use App\Events\UpdateTaskStatus;
 use App\Http\Requests\TaskRequest;
 use App\Interfaces\TaskInterface;
 use App\Models\Task;
@@ -64,6 +66,7 @@ class TaskRepository implements TaskInterface
             $task = $this->task->find($id);
             $request_data = $request->except(['_token']);
             $task->update($request_data);
+            event(new UpdateTaskStatus($task->status));
             return redirect()->route('tasks.index')->with('success','Updated Successfully');
         }catch (\Exception $e){
             return redirect()->back()->with(['error'=>'Something went wrong']);
