@@ -20,14 +20,17 @@ class AuthController extends Controller
     public function authenticate(LoginRequest $request)
     {
         try {
-            Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1]);
+           $user =  Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1]);
 
-            $request->session()->regenerate();
+           if ($user){
+               $request->session()->regenerate();
 
-            return redirect()->route('home');
+               return redirect()->route('home');
+           }
+            return redirect()->back()->with(['error' => 'Incorrect Email Or Password']);
 
         } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Incorrect Email Or Password']);
+            return redirect()->back()->with(['error' => 'Something went wrong']);
         }
     }
     // end proceed login

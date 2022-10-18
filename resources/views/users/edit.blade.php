@@ -105,6 +105,7 @@
 
 
                                     <div class="row">
+                                        @if(auth('web')->user()->is_admin == 1)
                                         <div class="input-group col-6 mb-3">
                                             <div class="form-check">
                                                 <input class="form-check-input" name="is_admin" type="checkbox"
@@ -112,6 +113,7 @@
                                                 <label class="form-check-label">Is Admin</label>
                                             </div>
                                         </div>
+                                        @endif
 
                                         <div class="input-group col-6 mb-3">
                                             <div class="form-check">
