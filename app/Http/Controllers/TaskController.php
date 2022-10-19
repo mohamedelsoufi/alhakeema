@@ -41,8 +41,6 @@ class TaskController extends Controller
     {
         try {
             $users = $this->user->getAll();
-            event(new Status('Hi Ya waal'));
-            event(new UpdateTaskStatus('in create'));
             return view('tasks.create',compact('users'));
         }catch (\Exception $e){
             return redirect()->back()->with(['error'=>'Something went wrong']);

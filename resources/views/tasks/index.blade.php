@@ -109,13 +109,23 @@
 
 @section('scripts')
     <script>
-       
+
 
         Echo.channel('realTimePreview')
             .listen('UpdateTaskStatus', (e) => {
-                console.log('Received test event');
-                console.log(e.message);
                 document.getElementById('status').innerText = e.message;
+                if (e.message == 'CANCELLED') {
+                    $("#status").addClass('bg-danger');
+                }
+                if (e.message == 'INPROGRESS') {
+                    $("#status").addClass('bg-info');
+                }
+                if (e.message == 'COMPLETED') {
+                    $("#status").addClass('bg-success');
+                }
+                if (e.message == 'HOLD') {
+                    $("#status").addClass('bg-warning');
+                }
             });
 
     </script>
